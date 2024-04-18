@@ -1,6 +1,14 @@
+const { readData } = require("../utils/data");
 const gamesRouter = require("express").Router();
 
-const getAllGames = async (res, req) => {};
+const getAllGames = async (res, req) => {
+  const games = await readData("./data/games.json");
+  if (!games) {
+    // TODO: обработать ошибку
+  } else {
+    req.send(games);
+  }
+};
 
 gamesRouter.get("/games", getAllGames);
 
